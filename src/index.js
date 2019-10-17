@@ -1,26 +1,8 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
+import { createLine } from "./utils/wireframe";
 
 import "./styles.css";
-
-function devideWidth(width, parts, min) {
-  var randombit = width - min * parts;
-  var out = [];
-
-  for (var i = 0; i < parts; i++) {
-    out.push(Math.random());
-  }
-
-  var mult =
-    randombit /
-    out.reduce(function(a, b) {
-      return a + b;
-    });
-
-  return out.map(function(el) {
-    return Math.floor(el * mult + min);
-  });
-}
 
 function createArrayFromInt(range) {
   var x = [];
@@ -43,65 +25,10 @@ function App() {
   const [height, setHeight] = useState(12);
   const [spacing, setSpacing] = useState(4);
 
-  // function getFullRow() {
-  //   const wordsWidth = devideWidth(MAX_WIDTH * words, words, MIN_WIDTH / 2);
-  //   var lastWidth = 0;
-  //   var totalWidth = 0;
-
-  //   const rects = createArrayFromInt(words).map((x, i) => {
-  //     const currentWidth = wordsWidth[i] || 0;
-  //     totalWidth += lastWidth;
-  //     lastWidth = currentWidth;
-
-  //     console.log(currentWidth);
-
-  //     return (
-  //       <rect
-  //         x={totalWidth + i * spacing}
-  //         y={0}
-  //         fill="#ddd"
-  //         width={currentWidth}
-  //         height={height}
-  //         rx={radius}
-  //       />
-  //     );
-  //   });
-
-  //   return rects;
-  // }
-
-  function createRow(rowNum) {
-    var lastWidth = 0;
-    var totalWidth = 0;
-    const firstRow = rowNum === 0;
-    const numOfWords = firstRow ? words : getRandom(1, words);
-
-    // if (firstRow) return getFullRow();
-
-    const rects = createArrayFromInt(numOfWords).map((x, i) => {
-      const currentWidth = getRandom(MIN_WIDTH, MAX_WIDTH);
-      totalWidth += lastWidth;
-      lastWidth = currentWidth;
-
-      return (
-        <rect
-          x={totalWidth + i * spacing}
-          y={height * rowNum + spacing * rowNum}
-          fill="#ddd"
-          width={currentWidth}
-          height={height}
-          rx={radius}
-        />
-      );
-    });
-
-    return rects;
-  }
-
   const rects = createArrayFromInt(lines).map((row, index) => {
     return (
       <g key={index}>
-        {createRow(index).map(rect => (
+        {createLine(index, words, spacing, height, radius).map(rect => (
           <>{rect}</>
         ))}
       </g>
