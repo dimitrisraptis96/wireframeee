@@ -3,6 +3,25 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
+function devideWidth(width, parts, min) {
+  var randombit = width - min * parts;
+  var out = [];
+
+  for (var i = 0; i < parts; i++) {
+    out.push(Math.random());
+  }
+
+  var mult =
+    randombit /
+    out.reduce(function(a, b) {
+      return a + b;
+    });
+
+  return out.map(function(el) {
+    return Math.floor(el * mult + min);
+  });
+}
+
 function createArrayFromInt(range) {
   var x = [];
   for (var i = 1; i <= range; i++) {
@@ -20,14 +39,46 @@ function App() {
 
   const [radius, setRadius] = useState(2);
   const [lines, setLines] = useState(3);
-  const [words, setWords] = useState(2);
+  const [words, setWords] = useState(3);
   const [height, setHeight] = useState(12);
   const [spacing, setSpacing] = useState(4);
+
+  // function getFullRow() {
+  //   const wordsWidth = devideWidth(MAX_WIDTH * words, words, MIN_WIDTH / 2);
+  //   var lastWidth = 0;
+  //   var totalWidth = 0;
+
+  //   const rects = createArrayFromInt(words).map((x, i) => {
+  //     const currentWidth = wordsWidth[i] || 0;
+  //     totalWidth += lastWidth;
+  //     lastWidth = currentWidth;
+
+  //     console.log(currentWidth);
+
+  //     return (
+  //       <rect
+  //         x={totalWidth + i * spacing}
+  //         y={0}
+  //         fill="#ddd"
+  //         width={currentWidth}
+  //         height={height}
+  //         rx={radius}
+  //       />
+  //     );
+  //   });
+
+  //   return rects;
+  // }
 
   function createRow(rowNum) {
     var lastWidth = 0;
     var totalWidth = 0;
-    const rects = createArrayFromInt(words).map((x, i) => {
+    const firstRow = rowNum === 0;
+    const numOfWords = firstRow ? words : getRandom(1, words);
+
+    // if (firstRow) return getFullRow();
+
+    const rects = createArrayFromInt(numOfWords).map((x, i) => {
       const currentWidth = getRandom(MIN_WIDTH, MAX_WIDTH);
       totalWidth += lastWidth;
       lastWidth = currentWidth;
@@ -73,7 +124,7 @@ function App() {
         {radius}
       </div>
       <div>
-        <label>Max Words per line: </label>
+        <label>Words: </label>
         <input
           id="words"
           type="range"
@@ -141,7 +192,7 @@ function App() {
 }
 
 function getRandom(min, max) {
-  return Math.floor(Math.random() * (max + min)) + min;
+  return Math.floor(Math.random() * (max - min)) + min;
 }
 
 const rootElement = document.getElementById("root");
