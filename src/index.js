@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { createLine } from "./utils/wireframe";
+import { createLine, getRandomWidthsArray } from "./utils/wireframe";
 
 import "./styles.css";
 
@@ -16,19 +16,32 @@ const MIN_WIDTH = 10;
 const MAX_WIDTH = 80;
 
 function App() {
-  const [refresh, setRefresh] = useState(false);
-  const refreshState = () => setRefresh(!refresh);
-
   const [radius, setRadius] = useState(2);
   const [lines, setLines] = useState(3);
   const [words, setWords] = useState(3);
   const [height, setHeight] = useState(12);
   const [spacing, setSpacing] = useState(4);
+  const [structure, setStructure] = useState([]);
+
+  const refreshState = () => setStructure(getRandomWidthsArray(lines, words));
+
+  useEffect(() => {
+    setStructure(getRandomWidthsArray(lines, words));
+  }, [lines, words]);
+
+  console.log(structure);
 
   const rects = createArrayFromInt(lines).map((row, index) => {
     return (
       <g key={index}>
-        {createLine(index, words, spacing, height, radius).map(rect => (
+        {createLine(
+          index,
+          words,
+          spacing,
+          height,
+          radius,
+          structure[index]
+        ).map(rect => (
           <>{rect}</>
         ))}
       </g>
