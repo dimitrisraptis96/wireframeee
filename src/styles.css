@@ -2,3 +2,10 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+.Preview {
+  margin: 1rem;
+  padding: 2rem;
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+}
