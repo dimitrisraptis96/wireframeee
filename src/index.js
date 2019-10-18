@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
-import { createLine, getRandomWidthsArray } from "./utils/wireframe";
+import {
+  calculateMaxWidth,
+  createLine,
+  getRandomWidthsArray
+} from "./utils/wireframe";
 
 import "./styles.css";
 
@@ -28,25 +32,6 @@ function App() {
   useEffect(() => {
     setStructure(getRandomWidthsArray(lines, words));
   }, [lines, words]);
-
-  console.log(structure);
-
-  const rects = createArrayFromInt(lines).map((row, index) => {
-    return (
-      <g key={index}>
-        {createLine(
-          index,
-          words,
-          spacing,
-          height,
-          radius,
-          structure[index]
-        ).map(rect => (
-          <>{rect}</>
-        ))}
-      </g>
-    );
-  });
 
   return (
     <div className="App">
@@ -120,12 +105,25 @@ function App() {
       <div style={{ margin: "4rem" }} />
 
       <svg
-        width={MAX_WIDTH * (words + 1) + spacing * (words + 1)}
+        width={calculateMaxWidth(structure) + spacing * words}
         height={height * lines + spacing * lines}
       >
-        {rects.map((rect, index) => (
-          <>{rect}</>
-        ))}
+        {createArrayFromInt(lines).map((row, index) => {
+          return (
+            <g key={index}>
+              {createLine(
+                index,
+                words,
+                spacing,
+                height,
+                radius,
+                structure[index]
+              ).map(rect => (
+                <>{rect}</>
+              ))}
+            </g>
+          );
+        })}
       </svg>
     </div>
   );

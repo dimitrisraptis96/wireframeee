@@ -13,6 +13,15 @@ export function getRandomWidthsArray(lines, words) {
   );
 }
 
+export function calculateMaxWidth(structure) {
+  if (structure.length === 0) return;
+
+  const lines = structure.map(line => line.reduce((a, b) => a + b, 0));
+  const max = lines.reduce((a, b) => Math.max(a, b));
+
+  return max;
+}
+
 function rectangle(x = 0, y = 0, width, height, color = COLOR, radius = 0) {
   return (
     <rect x={x} y={y} fill={color} width={width} height={height} rx={radius} />
