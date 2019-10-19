@@ -3,12 +3,16 @@ import Layout from "../components/Layout/MainLayout";
 import {
   calculateMaxWidth,
   createLine,
-  getRandomWidthsArray
+  getRandomWidthsArray,
+  createStringSVG
 } from "../utils/wireframe";
 import { createArrayFromInt } from "../utils/helpers";
 import styled from "styled-components";
 import { Box, Heading, Button } from "rebass/styled-components";
 import RangeInput from "../components/RangeInput";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { useToasts } from "react-toast-notifications";
+import getRandomInterjection from "interjection-js";
 
 import { FiRefreshCw, FiDownload } from "react-icons/fi";
 
@@ -35,12 +39,28 @@ function Main() {
   const [height, setHeight] = useState(12);
   const [spacing, setSpacing] = useState(4);
   const [structure, setStructure] = useState([]);
+  const [svg, setSvg] = useState("");
+
+  const { addToast } = useToasts();
 
   const refreshState = () => setStructure(getRandomWidthsArray(lines, words));
 
   useEffect(() => {
     setStructure(getRandomWidthsArray(lines, words));
   }, [lines, words]);
+
+  useEffect(() => {
+    setSvg(
+      createStringSVG({
+        words,
+        height,
+        spacing,
+        structure,
+        color: "red",
+        radius
+      })
+    );
+  });
 
   return (
     <Layout>
@@ -90,35 +110,50 @@ function Main() {
           <FiRefreshCw size={14} style={{ marginRight: "0.5rem" }} />
           Refresh
         </Button>
-        <Button variant="primary" width={1} mt={2} onClick={() => {}}>
+        <Button
+          variant="primary"
+          width={1}
+          mt={2}
+          onClick={() => console.log(svg)}
+        >
           <FiDownload size={14} style={{ marginRight: "0.5rem" }} />
           Download
         </Button>
       </Options>
 
-      <Preview>
-        <svg
-          width={calculateMaxWidth(structure) + spacing * words}
-          height={height * lines + spacing * lines}
-        >
-          {createArrayFromInt(lines).map((row, index) => {
-            return (
-              <g key={index}>
-                {createLine(
-                  index,
-                  words,
-                  spacing,
-                  height,
-                  radius,
-                  structure[index]
-                ).map(rect => (
-                  <>{rect}</>
-                ))}
-              </g>
-            );
-          })}
-        </svg>
-      </Preview>
+      <CopyToClipboard
+        text={svg}
+        onCopy={() =>
+          addToast(`${getRandomInterjection()}! Copied! 👏`, {
+            appearance: "success",
+            autoDismiss: true
+          })
+        }
+      >
+        <Preview>
+          <svg
+            width={calculateMaxWidth(structure) + spacing * words}
+            height={height * lines + spacing * lines}
+          >
+            {createArrayFromInt(lines).map((row, index) => {
+              return (
+                <g key={index}>
+                  {createLine(
+                    index,
+                    words,
+                    spacing,
+                    height,
+                    radius,
+                    structure[index]
+                  ).map(rect => (
+                    <>{rect}</>
+                  ))}
+                </g>
+              );
+            })}
+          </svg>
+        </Preview>
+      </CopyToClipboard>
     </Layout>
   );
 }

@@ -58,3 +58,47 @@ export function createLine(
 
   return rects;
 }
+
+export function createStringSVG({
+  words,
+  height,
+  spacing,
+  structure,
+  color,
+  radius
+}) {
+  return `
+    <svg
+      width="${calculateMaxWidth(structure) + spacing * words}"
+      height="${height * structure.length + spacing * structure.length}"
+    >
+      ${createArrayFromInt(structure.length)
+        .map((x, rowIndex) => {
+          let lastWidth = 0;
+          let totalWidth = 0;
+
+          return `<g>
+            ${createArrayFromInt(structure[rowIndex].length)
+              .map((y, columnIndex) => {
+                const currentWidth = structure[rowIndex][columnIndex];
+                totalWidth += lastWidth;
+                lastWidth = currentWidth;
+
+                return `
+                <rect 
+                  x="${totalWidth + columnIndex * spacing}"
+                  y="${height * rowIndex + spacing * rowIndex}"
+                  fill="${color}"
+                  width="${currentWidth}"
+                  height="${height}"
+                  rx="${radius}"
+                />
+              `;
+              })
+              .join(" ")}
+          </g>`;
+        })
+        .join(" ")}
+    </svg>
+  `;
+}
