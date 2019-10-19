@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../components/MainLayout";
+import Layout from "../components/Layout/MainLayout";
 import {
   calculateMaxWidth,
   createLine,
@@ -7,8 +7,10 @@ import {
 } from "../utils/wireframe";
 import { createArrayFromInt } from "../utils/helpers";
 import styled from "styled-components";
-import { Box, Heading, Button } from "rebass";
+import { Box, Heading, Button } from "rebass/styled-components";
 import RangeInput from "../components/RangeInput";
+
+import { FiRefreshCw, FiDownload } from "react-icons/fi";
 
 const Options = styled.div`
   margin: 1rem;
@@ -83,7 +85,15 @@ function Main() {
           onChange={e => setSpacing(e.target.value)}
           value={spacing}
         />
-        <Button onClick={refreshState}>Refresh</Button>
+
+        <Button variant="outline" width={1} mt={4} onClick={refreshState}>
+          <FiRefreshCw size={14} style={{ marginRight: "0.5rem" }} />
+          Refresh
+        </Button>
+        <Button variant="primary" width={1} mt={2} onClick={() => {}}>
+          <FiDownload size={14} style={{ marginRight: "0.5rem" }} />
+          Download
+        </Button>
       </Options>
 
       <Preview>
