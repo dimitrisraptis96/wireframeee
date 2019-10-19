@@ -7,6 +7,8 @@ import {
 } from "../utils/wireframe";
 import { createArrayFromInt } from "../utils/helpers";
 import styled from "styled-components";
+import { Box, Heading, Button } from "rebass";
+import RangeInput from "../components/RangeInput";
 
 const Options = styled.div`
   margin: 1rem;
@@ -41,72 +43,47 @@ function Main() {
   return (
     <Layout>
       <Options>
-        <div>
-          <label>Radius: </label>
-          <input
-            id="radius"
-            type="range"
-            min={0}
-            max={height / 2}
-            step={1}
-            onChange={e => setRadius(e.target.value)}
-            value={radius}
-          />
-          {radius}
-        </div>
-        <div>
-          <label>Words: </label>
-          <input
-            id="words"
-            type="range"
-            min={0}
-            max={8}
-            step={1}
-            onChange={e => setWords(e.target.value)}
-            value={words}
-          />
-          {words}
-        </div>
-        <div>
-          <label>Lines</label>
-          <input
-            id="lines"
-            type="range"
-            min={0}
-            max={10}
-            step={1}
-            onChange={e => setLines(e.target.value)}
-            value={lines}
-          />
-          {lines}
-        </div>
-        <div>
-          <label>Height: </label>
-          <input
-            id="words"
-            type="range"
-            min={4}
-            max={20}
-            step={1}
-            onChange={e => setHeight(e.target.value)}
-            value={height}
-          />
-          {height}
-        </div>
-        <div>
-          <label>Spacing: </label>
-          <input
-            id="spacing"
-            type="range"
-            min={4}
-            max={20}
-            step={1}
-            onChange={e => setSpacing(e.target.value)}
-            value={spacing}
-          />
-          {spacing}
-        </div>
-        <button onClick={refreshState}>Refresh</button>
+        <RangeInput
+          label="Radius"
+          name="radius"
+          min={0}
+          max={height / 2}
+          onChange={e => setRadius(e.target.value)}
+          value={radius}
+        />
+        <RangeInput
+          label="Words"
+          name="words"
+          min={0}
+          max={8}
+          onChange={e => setWords(e.target.value)}
+          value={words}
+        />
+        <RangeInput
+          label="Lines"
+          name="lines"
+          min={0}
+          max={10}
+          onChange={e => setLines(e.target.value)}
+          value={lines}
+        />
+        <RangeInput
+          label="Words"
+          name="words"
+          min={4}
+          max={20}
+          onChange={e => setHeight(e.target.value)}
+          value={height}
+        />
+        <RangeInput
+          label="Spacing"
+          name="spacing"
+          min={4}
+          max={20}
+          onChange={e => setSpacing(e.target.value)}
+          value={spacing}
+        />
+        <Button onClick={refreshState}>Refresh</Button>
       </Options>
 
       <Preview>
