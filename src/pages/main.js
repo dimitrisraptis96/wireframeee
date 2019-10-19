@@ -14,7 +14,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useToasts } from "react-toast-notifications";
 import getRandomInterjection from "interjection-js";
 
-import { FiRefreshCw, FiDownload } from "react-icons/fi";
+import { FiRefreshCw, FiDownload, FiCopy } from "react-icons/fi";
 
 const Options = styled.div`
   margin: 1rem;
@@ -30,6 +30,30 @@ const Preview = styled.div`
   background-color: #fff;
   border: 2px dashed #aaa;
   border-radius: 8px;
+  position: relative;
+`;
+
+const CopyWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f4f4f4;
+  ${"" /* width: 20px; */}
+  ${"" /* height: 20px; */}
+  border-radius: 50%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    background-color: #212121;
+    & > svg {
+      color: #fff;
+    }
+  }
 `;
 
 function Main() {
@@ -121,39 +145,42 @@ function Main() {
         </Button>
       </Options>
 
-      <CopyToClipboard
-        text={svg}
-        onCopy={() =>
-          addToast(`${getRandomInterjection()}! Copied! 👏`, {
-            appearance: "success",
-            autoDismiss: true
-          })
-        }
-      >
-        <Preview>
-          <svg
-            width={calculateMaxWidth(structure) + spacing * words}
-            height={height * lines + spacing * lines}
-          >
-            {createArrayFromInt(lines).map((row, index) => {
-              return (
-                <g key={index}>
-                  {createLine(
-                    index,
-                    words,
-                    spacing,
-                    height,
-                    radius,
-                    structure[index]
-                  ).map(rect => (
-                    <>{rect}</>
-                  ))}
-                </g>
-              );
-            })}
-          </svg>
-        </Preview>
-      </CopyToClipboard>
+      <Preview>
+        <CopyToClipboard
+          text={svg}
+          onCopy={() =>
+            addToast(`${getRandomInterjection()}! Copied! 👏`, {
+              appearance: "success",
+              autoDismiss: true
+            })
+          }
+        >
+          <CopyWrapper>
+            <FiCopy size={14} />
+          </CopyWrapper>
+        </CopyToClipboard>
+        <svg
+          width={calculateMaxWidth(structure) + spacing * words}
+          height={height * lines + spacing * lines}
+        >
+          {createArrayFromInt(lines).map((row, index) => {
+            return (
+              <g key={index}>
+                {createLine(
+                  index,
+                  words,
+                  spacing,
+                  height,
+                  radius,
+                  structure[index]
+                ).map(rect => (
+                  <>{rect}</>
+                ))}
+              </g>
+            );
+          })}
+        </svg>
+      </Preview>
     </Layout>
   );
 }
