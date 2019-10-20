@@ -13,7 +13,6 @@ import RangeInput from "../components/RangeInput";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useToasts } from "react-toast-notifications";
 import getRandomInterjection from "interjection-js";
-
 import { FiRefreshCw, FiDownload, FiCopy } from "react-icons/fi";
 
 const Options = styled.div`

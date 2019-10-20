@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Main from "./pages/main";
 import About from "./pages/about";
@@ -7,6 +7,7 @@ import theme from "./utils/theme";
 import AppLayout from "./components/Layout/AppLayout";
 import { ToastProvider } from "react-toast-notifications";
 import Toast from "./components/Toast";
+import Nav from "./components/Nav";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -19,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const [themeMode, setThemeMode] = useState("dark");
+
   return (
     <Router>
       <ThemeProvider theme={theme}>
@@ -29,16 +32,7 @@ function App() {
         >
           <GlobalStyle />
           <AppLayout>
-            <nav>
-              <ul>
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-              </ul>
-            </nav>
+            <Nav themeMode={themeMode} setThemeMode={setThemeMode} />
 
             <Switch>
               <Route path="/about">
