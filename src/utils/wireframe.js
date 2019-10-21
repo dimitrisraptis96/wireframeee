@@ -5,10 +5,14 @@ const RECTANGLE_MIN_WIDTH = 10;
 const RECTANGLE_MAX_WIDTH = 80;
 const COLOR = "#aaa";
 
-export function getRandomWidthsArray(lines, words) {
+export function getRandomWidthsArray(lines, words, min) {
+  console.log(min);
+
+  console.log(getRandomInt(min, RECTANGLE_MAX_WIDTH));
+
   return createArrayFromInt(lines).map(() =>
     createArrayFromInt(getRandomInt(1, words)).map(() =>
-      getRandomInt(RECTANGLE_MIN_WIDTH, RECTANGLE_MAX_WIDTH)
+      getRandomInt(min, RECTANGLE_MAX_WIDTH)
     )
   );
 }

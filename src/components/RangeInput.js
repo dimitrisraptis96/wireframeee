@@ -1,11 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Slider from "./Slider";
+import { Flex } from "rebass/styled-components";
+import styled from "styled-components";
+
+const Label = styled.label`
+  display: block;
+  min-width: 60px;
+  text-align: left;
+  margin-right: 1.5rem;
+  color: ${props => props.theme.colors.primary};
+`;
 
 const RangeInput = ({ min, max, step, name, label, value, onChange }) => {
   return (
-    <div>
-      <label>{label}</label>
-      <input
+    <Flex alignItems="center" mb={4}>
+      <Label>{label}:</Label>
+      <Slider
         id={name}
         name={name}
         type="range"
@@ -15,8 +26,7 @@ const RangeInput = ({ min, max, step, name, label, value, onChange }) => {
         onChange={onChange}
         value={value}
       />
-      {value} px
-    </div>
+    </Flex>
   );
 };
 

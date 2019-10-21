@@ -11,7 +11,7 @@ import Nav from "./components/Nav";
 
 const GlobalStyle = createGlobalStyle`
   * {
-    font-family: "Muli", sans-serif;
+    font-family: "Work Sans", sans-serif;
     margin: 0;  
   }
   html {
