@@ -1,13 +1,17 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { ToastProvider } from "react-toast-notifications";
+
 import Main from "./pages/main";
 import About from "./pages/about";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
-import theme from "./utils/theme";
+import Settings from "./pages/settings";
+
 import AppLayout from "./components/Layout/AppLayout";
-import { ToastProvider } from "react-toast-notifications";
-import Toast from "./components/Toast";
 import Nav from "./components/Nav";
+import Toast from "./components/Toast";
+
+import theme from "./utils/theme";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -38,11 +42,14 @@ function App() {
               <Route path="/about">
                 <About />
               </Route>
+              <Route path="/settings">
+                <Settings />
+              </Route>
               <Route path="/">
                 <Main />
               </Route>
             </Switch>
-          </AppLayout>{" "}
+          </AppLayout>
         </ToastProvider>
       </ThemeProvider>
     </Router>

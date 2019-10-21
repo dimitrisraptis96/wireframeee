@@ -28,7 +28,7 @@ function Nav({ themeMode, setThemeMode }) {
                 </Link>
               </li>
               <li>
-                <Link to="/about">
+                <Link to="/settings">
                   <b>Settings</b>
                 </Link>
               </li>
