@@ -12,6 +12,7 @@ import Nav from "./components/Nav";
 import Toast from "./components/Toast";
 
 import theme from "./utils/theme";
+import Footer from "./components/Footer";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -49,6 +50,7 @@ function App() {
                 <Main />
               </Route>
             </Switch>
+            <Footer />
           </AppLayout>
         </ToastProvider>
       </ThemeProvider>
