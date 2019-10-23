@@ -2,6 +2,7 @@ import React from "react";
 import { Flex, Box } from "rebass/styled-components";
 
 import Link from "./Link";
+import Logo from "./Logo";
 import Toggle from "./Toggle";
 import sun from "../assets/sun.png";
 import moon from "../assets/moon.png";
@@ -9,10 +10,8 @@ import moon from "../assets/moon.png";
 function Nav({ themeMode, setThemeMode }) {
   return (
     <nav>
-      <Flex justifyContent="space-between" p={4}>
-        <div>
-          <h1 style={{ color: "#3D50FC" }}>Wireframer</h1>
-        </div>
+      <Flex justifyContent="space-between" style={{ padding: "2rem 3rem" }}>
+        <Logo />
 
         <Flex>
           <ul style={{ listStyleType: "none", marginRight: "4rem" }}>
@@ -28,8 +27,8 @@ function Nav({ themeMode, setThemeMode }) {
                 </Link>
               </li>
               <li>
-                <Link to="/settings">
-                  <b>Settings</b>
+                <Link to="/support">
+                  <b>Support</b>
                 </Link>
               </li>
             </Flex>

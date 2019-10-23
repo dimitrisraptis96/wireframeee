@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Underline from "./Underline";
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
