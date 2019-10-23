@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AddButton from "./AddButton";
 import { Flex } from "rebass/styled-components";
 import ColorButton from "./ColorButton";
@@ -30,16 +30,36 @@ const Label = styled.p`
 `;
 
 const ColorOptions = ({}) => {
+  const [colors, setColors] = useState(["red", "#aaa"]);
+
+  const editColor = index => color => {
+    const newColors = [...colors];
+    newColors[index] = color;
+    setColors(newColors);
+  };
+
+  const deleteColor = index => color => {
+    setColors([...colors.slice(0, index), ...colors.slice(index + 1)]);
+  };
+
+  const addColor = () => {
+    setColors([...colors, "#aaa"]);
+  };
+
   return (
     <Flex mb={4} alignItems="flex-start">
       <Label>Colors:</Label>
       <ColorContainer>
-        <ColorButton color="red" />
-        <ColorButton color="yellow" />
-        <ColorButton color="#aaa" />
-        <ColorButton color="#aaa" />
-        <ColorButton color="#aaa" />
-        <AddButton addColor={() => {}} />
+        {colors.map((color, index) => (
+          <ColorButton
+            key={index}
+            color={color}
+            handleChange={editColor(index)}
+            deleteColor={deleteColor(index)}
+            onlyOne={colors.length === 1}
+          />
+        ))}
+        <AddButton addColor={addColor} />
       </ColorContainer>
     </Flex>
   );

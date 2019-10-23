@@ -3,6 +3,7 @@ import { rgba } from "polished";
 import styled from "styled-components";
 import { TwitterPicker } from "react-color";
 import useOutsideClick from "../hooks/useOutsideClick";
+import { FiTrash } from "react-icons/fi";
 
 const Popover = styled.div`
   position: relative;
@@ -26,6 +27,18 @@ const Circle = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  & > svg {
+    display: none;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+  }
+
+  &:hover > svg {
+    display: block;
+  }
 `;
 
 const Color = styled.div`
@@ -35,26 +48,25 @@ const Color = styled.div`
   border-radius: 50%;
 `;
 
-const ColorButton = ({ color: value }) => {
+const ColorButton = ({ color, handleChange, deleteColor, onlyOne }) => {
   const ref = useRef();
 
   useOutsideClick(ref, () => {
     if (isOpen) setIsOpen(false);
   });
 
-  const [color, setColor] = useState(value || "red");
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-  console.log(isOpen);
 
   return (
     <Circle color={color} onClick={toggle}>
       <Color color={color} />
+      {!onlyOne && <FiTrash size={12} onClick={deleteColor} />}
       {isOpen && (
         <Popover ref={ref}>
           <Cover>
-            <TwitterPicker onChange={color => setColor(color.hex)} />
+            <TwitterPicker onChange={color => handleChange(color.hex)} />
           </Cover>
         </Popover>
       )}
