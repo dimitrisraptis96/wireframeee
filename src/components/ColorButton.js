@@ -50,12 +50,11 @@ const Color = styled.div`
 
 const ColorButton = ({ color, handleChange, deleteColor, onlyOne }) => {
   const ref = useRef();
+  const [isOpen, setIsOpen] = useState(false);
 
   useOutsideClick(ref, () => {
     if (isOpen) setIsOpen(false);
   });
-
-  const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
 

@@ -5,7 +5,7 @@ import { ToastProvider } from "react-toast-notifications";
 
 import Main from "./pages/main";
 import About from "./pages/about";
-import Settings from "./pages/settings";
+import Support from "./pages/support";
 
 import AppLayout from "./components/Layout/AppLayout";
 import Nav from "./components/Nav";
@@ -43,8 +43,8 @@ function App() {
               <Route path="/about">
                 <About />
               </Route>
-              <Route path="/settings">
-                <Settings />
+              <Route path="/support">
+                <Support />
               </Route>
               <Route path="/">
                 <Main />
