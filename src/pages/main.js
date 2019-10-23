@@ -17,15 +17,16 @@ function Main() {
   const [words, setWords] = useState(3);
   const [height, setHeight] = useState(12);
   const [spacing, setSpacing] = useState(4);
+  const [colors, setColors] = useState([]);
   const [structure, setStructure] = useState([]);
   const [svg, setSvg] = useState("");
 
   const refreshState = () =>
-    setStructure(getRandomWidthsArray(lines, words, height));
+    setStructure(getRandomWidthsArray(lines, words, height, colors));
 
   useEffect(() => {
-    setStructure(getRandomWidthsArray(lines, words, height));
-  }, [lines, words]);
+    setStructure(getRandomWidthsArray(lines, words, height, colors));
+  }, [lines, words, colors]);
 
   useEffect(() => {
     setSvg(
@@ -34,11 +35,12 @@ function Main() {
         height,
         spacing,
         structure,
-        color: "red",
         radius
       })
     );
   });
+
+  const updateColors = colors => setColors(colors);
 
   const createSvgElement = () => {
     return (
@@ -81,9 +83,10 @@ function Main() {
         setSpacing={setSpacing}
         structure={structure}
         setStructure={setStructure}
-        svg={svg}
+        svgString={svg}
         setSvg={setSvg}
         refreshState={refreshState}
+        updateColors={updateColors}
       />
 
       <Preview svgElement={createSvgElement()} svgString={svg} />

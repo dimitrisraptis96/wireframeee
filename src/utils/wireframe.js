@@ -5,18 +5,20 @@ const RECTANGLE_MIN_WIDTH = 10;
 const RECTANGLE_MAX_WIDTH = 80;
 const COLOR = "#aaa";
 
-export function getRandomWidthsArray(lines, words, min) {
+export function getRandomWidthsArray(lines, words, min, colors) {
   return createArrayFromInt(lines).map(() =>
-    createArrayFromInt(getRandomInt(1, words)).map(() =>
-      getRandomInt(min, RECTANGLE_MAX_WIDTH)
-    )
+    createArrayFromInt(getRandomInt(1, words)).map(() => ({
+      width: getRandomInt(min, RECTANGLE_MAX_WIDTH),
+      color: colors[getRandomInt(0, colors.length - 1)]
+    }))
   );
 }
 
 export function calculateMaxWidth(structure) {
   if (structure.length === 0) return;
+  const widthArray = structure.map(line => line.map(row => row.width));
 
-  const lines = structure.map(line => line.reduce((a, b) => a + b, 0));
+  const lines = widthArray.map(line => line.reduce((a, b) => a + b, 0));
   const max = lines.reduce((a, b) => Math.max(a, b));
 
   return max;
@@ -34,15 +36,16 @@ export function createLine(
   spacing,
   height,
   radius,
-  widthArray = []
+  structure = []
 ) {
   let lastWidth = 0;
   let totalWidth = 0;
   const firstRow = rowNum === 0;
   const numOfWords = firstRow ? words : getRandomInt(1, words);
 
-  const rects = createArrayFromInt(widthArray.length).map((x, i) => {
-    const currentWidth = widthArray[i];
+  const rects = createArrayFromInt(structure.length).map((x, i) => {
+    const currentWidth = structure[i].width;
+    const color = structure[i].color;
     totalWidth += lastWidth;
     lastWidth = currentWidth;
 
@@ -51,7 +54,7 @@ export function createLine(
       height * rowNum + spacing * rowNum,
       currentWidth,
       height,
-      COLOR,
+      color,
       radius
     );
   });
@@ -59,18 +62,16 @@ export function createLine(
   return rects;
 }
 
-export function createStringSVG({
-  words,
-  height,
-  spacing,
-  structure,
-  color,
-  radius
-}) {
+export function createStringSVG({ words, height, spacing, structure, radius }) {
+  const widthAttr = calculateMaxWidth(structure) + spacing * words;
+  const heightAttr = height * structure.length + spacing * structure.length;
+
   return `
     <svg
-      width="${calculateMaxWidth(structure) + spacing * words}"
-      height="${height * structure.length + spacing * structure.length}"
+      width="${widthAttr}"
+      height="${heightAttr}"
+      viewBox="0 0 ${widthAttr} ${heightAttr}"
+      xmlns="http://www.w3.org/2000/svg"
     >
       ${createArrayFromInt(structure.length)
         .map((x, rowIndex) => {
@@ -80,7 +81,8 @@ export function createStringSVG({
           return `<g>
             ${createArrayFromInt(structure[rowIndex].length)
               .map((y, columnIndex) => {
-                const currentWidth = structure[rowIndex][columnIndex];
+                const currentWidth = structure[rowIndex][columnIndex].width;
+                const currentColor = structure[rowIndex][columnIndex].color;
                 totalWidth += lastWidth;
                 lastWidth = currentWidth;
 
@@ -88,7 +90,7 @@ export function createStringSVG({
                 <rect 
                   x="${totalWidth + columnIndex * spacing}"
                   y="${height * rowIndex + spacing * rowIndex}"
-                  fill="${color}"
+                  fill="${currentColor}"
                   width="${currentWidth}"
                   height="${height}"
                   rx="${radius}"

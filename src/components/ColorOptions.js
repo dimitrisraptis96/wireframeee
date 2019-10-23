@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AddButton from "./AddButton";
 import { Flex } from "rebass/styled-components";
 import ColorButton from "./ColorButton";
@@ -29,8 +29,14 @@ const Label = styled.p`
   color: ${props => props.theme.colors.primary};
 `;
 
-const ColorOptions = ({}) => {
-  const [colors, setColors] = useState(["red", "#aaa"]);
+const DEFAULT_COLORS = ["#3D50FC", "#DADDFF"];
+
+const ColorOptions = ({ updateColors }) => {
+  const [colors, setColors] = useState(DEFAULT_COLORS);
+
+  useEffect(() => {
+    updateColors(colors);
+  }, [colors]);
 
   const editColor = index => color => {
     const newColors = [...colors];

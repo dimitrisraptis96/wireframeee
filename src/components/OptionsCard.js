@@ -22,6 +22,15 @@ const H2 = styled.h2`
   color: ${props => props.theme.colors.primary};
 `;
 
+function download(svg) {
+  const anchorEl = document.createElement("a");
+  const file = new Blob([svg], { type: "image/svg+xml" });
+  anchorEl.href = URL.createObjectURL(file);
+  anchorEl.download = "WireFramer.svg";
+  document.body.appendChild(anchorEl);
+  anchorEl.click();
+}
+
 const OptionsCard = ({
   radius,
   setRadius,
@@ -33,8 +42,9 @@ const OptionsCard = ({
   setHeight,
   spacing,
   setSpacing,
-  svg,
-  refreshState
+  svgString,
+  refreshState,
+  updateColors
 }) => {
   return (
     <Card>
@@ -80,23 +90,30 @@ const OptionsCard = ({
         value={spacing}
       />
 
-      <ColorOptions />
+      <ColorOptions updateColors={updateColors} />
 
       <Flex>
         <Button variant="outline" width={1 / 2} mr={2} onClick={refreshState}>
           <FiRefreshCw size={14} style={{ marginRight: "0.5rem" }} />
           Refresh
         </Button>
+        {/* <a
+          href={svgString}
+          target="_blank"
+          title="Download Wireframer SVG"
+          download="wireframer.svg"
+        > */}
         <Button
           variant="primary"
           width={1 / 2}
           pt={3}
           pb={3}
-          onClick={() => console.log(svg)}
+          onClick={() => download(svgString)}
         >
           <FiDownload size={14} style={{ marginRight: "0.5rem" }} />
           Download
         </Button>
+        {/* </a> */}
       </Flex>
     </Card>
   );
