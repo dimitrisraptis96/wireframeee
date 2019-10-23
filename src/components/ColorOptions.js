@@ -29,7 +29,7 @@ const Label = styled.p`
   color: ${props => props.theme.colors.primary};
 `;
 
-const ColorPicker = ({}) => {
+const ColorOptions = ({}) => {
   return (
     <Flex mb={4} alignItems="flex-start">
       <Label>Colors:</Label>
@@ -45,4 +45,4 @@ const ColorPicker = ({}) => {
   );
 };
 
-export default ColorPicker;
+export default ColorOptions;

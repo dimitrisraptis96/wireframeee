@@ -6,7 +6,7 @@ import RangeInput from "../components/RangeInput";
 import { FiRefreshCw, FiDownload } from "react-icons/fi";
 import { rgba } from "polished";
 
-import ColorPicker from "../components/ColorPicker";
+import ColorOptions from "../components/ColorOptions";
 
 const Card = styled.div`
   margin: 1rem;
@@ -80,7 +80,7 @@ const OptionsCard = ({
         value={spacing}
       />
 
-      <ColorPicker />
+      <ColorOptions />
 
       <Flex>
         <Button variant="outline" width={1 / 2} mr={2} onClick={refreshState}>
