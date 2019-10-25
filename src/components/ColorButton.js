@@ -13,10 +13,9 @@ const Popover = styled.div`
 
 const Cover = styled.div`
   position: absolute;
-  top: -22px;
-  right: 0px;
-  bottom: 0px;
-  left: 22px;
+  bottom: -120px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const Circle = styled.div`
@@ -57,15 +56,30 @@ const ColorButton = ({ color, handleChange, deleteColor, onlyOne }) => {
   });
 
   const toggle = () => setIsOpen(!isOpen);
+  const open = () => setIsOpen(true);
 
   return (
-    <Circle color={color} onClick={toggle}>
+    <Circle color={color} onClick={open}>
       <Color color={color} />
       {!onlyOne && <FiTrash size={12} onClick={deleteColor} />}
       {isOpen && (
-        <Popover ref={ref}>
-          <Cover>
-            <TwitterPicker onChange={color => handleChange(color.hex)} />
+        <Popover>
+          <Cover ref={ref}>
+            <TwitterPicker
+              triangle="hide"
+              onChange={color => handleChange(color.hex)}
+              colors={[
+                "#DEE1FF",
+                "#3D50FC",
+                "#0419D8",
+                "#FFDEE4",
+                "#FF2B51",
+                "#92001A",
+                "#EBEBEB",
+                "#7E7E7E",
+                "#484848"
+              ]}
+            />
           </Cover>
         </Popover>
       )}

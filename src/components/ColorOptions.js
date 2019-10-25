@@ -29,7 +29,7 @@ const Label = styled.p`
   color: ${props => props.theme.colors.primary};
 `;
 
-const DEFAULT_COLORS = ["#3D50FC", "#DADDFF"];
+const DEFAULT_COLORS = ["#DEE1FF"];
 
 const ColorOptions = ({ updateColors }) => {
   const [colors, setColors] = useState(DEFAULT_COLORS);
@@ -49,7 +49,7 @@ const ColorOptions = ({ updateColors }) => {
   };
 
   const addColor = () => {
-    setColors([...colors, "#aaa"]);
+    setColors([...colors, "#DEE1FF"]);
   };
 
   return (
