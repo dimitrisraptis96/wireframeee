@@ -11,16 +11,13 @@ function Nav({ themeMode, setThemeMode }) {
   return (
     <nav>
       <Flex justifyContent="space-between" style={{ padding: "2rem 3rem" }}>
-        <Logo />
+        <Link to="/">
+          <Logo />
+        </Link>
 
         <Flex>
-          <ul style={{ listStyleType: "none", marginRight: "4rem" }}>
+          <ul style={{ listStyleType: "none" /*marginRight: "4rem"*/ }}>
             <Flex>
-              <li style={{ marginRight: "4rem" }}>
-                <Link to="/">
-                  <b>Home</b>
-                </Link>
-              </li>
               <li style={{ marginRight: "4rem" }}>
                 <Link to="/about">
                   <b>About</b>
@@ -34,7 +31,7 @@ function Nav({ themeMode, setThemeMode }) {
             </Flex>
           </ul>
 
-          <div>
+          {/* <div>
             <Toggle
               defaultChecked={themeMode === "dark" ? true : false}
               onChange={() => setThemeMode(!themeMode)}
@@ -61,7 +58,7 @@ function Nav({ themeMode, setThemeMode }) {
                 )
               }}
             />
-          </div>
+          </div> */}
         </Flex>
       </Flex>
     </nav>
