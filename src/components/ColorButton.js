@@ -3,6 +3,7 @@ import { rgba } from "polished";
 import styled from "styled-components";
 import { TwitterPicker } from "react-color";
 import useOutsideClick from "../hooks/useOutsideClick";
+import useKeyPress from "../hooks/useKeyPress";
 import { FiTrash } from "react-icons/fi";
 
 const Popover = styled.div`
@@ -50,6 +51,7 @@ const Color = styled.div`
 const ColorButton = ({ color, handleChange, deleteColor, onlyOne }) => {
   const ref = useRef();
   const [isOpen, setIsOpen] = useState(false);
+  // const enterPress = useKeyPress("Enter");
 
   useOutsideClick(ref, () => {
     if (isOpen) setIsOpen(false);
@@ -57,6 +59,7 @@ const ColorButton = ({ color, handleChange, deleteColor, onlyOne }) => {
 
   const toggle = () => setIsOpen(!isOpen);
   const open = () => setIsOpen(true);
+  const close = () => setIsOpen(false);
 
   return (
     <Circle color={color} onClick={open}>
@@ -79,6 +82,7 @@ const ColorButton = ({ color, handleChange, deleteColor, onlyOne }) => {
                 "#7E7E7E",
                 "#484848"
               ]}
+              color={color}
             />
           </Cover>
         </Popover>
