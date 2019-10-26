@@ -6,6 +6,36 @@ import Logo from "./Logo";
 import Toggle from "./Toggle";
 import sun from "../assets/sun.png";
 import moon from "../assets/moon.png";
+import { FiGift } from "react-icons/fi";
+import styled from "styled-components";
+import { rgba } from "polished";
+
+const Anchor = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  &,
+  &:link,
+  &:active,
+  &​:visited {
+    font-weight: bold;
+    color: ${props => props.theme.colors.primary};
+    text-decoration: none;
+  }
+
+  &:hover,
+  & > p:hover {
+    color: ${props => rgba(props.theme.colors.primary, 0.6)};
+  }
+
+  font-size: 16px;
+
+  & > svg {
+    margin-right: 0.5rem;
+  }
+`;
 
 function Nav({ themeMode, setThemeMode }) {
   return (
@@ -18,15 +48,22 @@ function Nav({ themeMode, setThemeMode }) {
         <Flex>
           <ul style={{ listStyleType: "none" /*marginRight: "4rem"*/ }}>
             <Flex>
-              <li style={{ marginRight: "4rem" }}>
+              {/* <li style={{ marginRight: "4rem" }}>
                 <Link to="/about">
                   <b>About</b>
                 </Link>
-              </li>
+              </li> */}
               <li>
-                <Link to="/support">
+                {/* <Link to="/support"> */}
+                <Anchor
+                  href="https://www.buymeacoffee.com/dmraptis"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <FiGift />
                   <b>Support</b>
-                </Link>
+                </Anchor>
+                {/* </Link> */}
               </li>
             </Flex>
           </ul>
