@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { ToastProvider } from "react-toast-notifications";
+import MetaTags from "react-meta-tags";
 
 import Main from "./pages/main";
 import About from "./pages/about";
@@ -10,9 +11,9 @@ import Support from "./pages/support";
 import AppLayout from "./components/Layout/AppLayout";
 import Nav from "./components/Nav";
 import Toast from "./components/Toast";
+import Footer from "./components/Footer";
 
 import theme from "./utils/theme";
-import Footer from "./components/Footer";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -35,6 +36,18 @@ function App() {
           placement="bottom-center"
           autoDismissTimeout={1500}
         >
+          <MetaTags>
+            <title>Page 1</title>
+            <meta
+              name="description"
+              content="Flawless SVG text for your wireframes"
+            />
+            <meta property="og:title" content="Wireframer" />
+            <meta
+              property="og:image"
+              content="https://storage.googleapis.com/resources-images/og-images/og-image.webp"
+            />
+          </MetaTags>
           <GlobalStyle />
           <AppLayout>
             <Nav themeMode={themeMode} setThemeMode={setThemeMode} />
