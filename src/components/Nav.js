@@ -40,7 +40,11 @@ const Anchor = styled.a`
 function Nav({ themeMode, setThemeMode }) {
   return (
     <nav>
-      <Flex justifyContent="space-between" style={{ padding: "2rem 3rem" }}>
+      <Flex
+        justifyContent="space-between"
+        alignItems="center"
+        style={{ padding: "2rem 3rem" }}
+      >
         <Link to="/">
           <Logo />
         </Link>
