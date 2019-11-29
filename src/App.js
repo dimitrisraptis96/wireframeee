@@ -37,7 +37,7 @@ function App() {
           autoDismissTimeout={1500}
         >
           <MetaTags>
-            <title>Page 1</title>
+            <title>Wireframer | Flawless SVG text for your wireframes</title>
             <meta
               name="description"
               content="Flawless SVG text for your wireframes"
