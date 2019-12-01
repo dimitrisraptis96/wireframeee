@@ -11,7 +11,7 @@ export const PHBanner = () => {
     >
       <img
         src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=${POST_ID}&theme=dark`}
-        alt="VisualEyes | Attention heatmaps inside your favorite design tool | Product Hunt Embed"
+        alt="Wireframer | Flawless SVG text for your wireframes | Product Hunt Embed"
         style={{
           zIndex: "100000000",
           margin: "0",
