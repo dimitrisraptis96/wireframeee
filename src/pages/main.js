@@ -9,7 +9,7 @@ import {
   getRandomWidthsArray,
   createStringSVG
 } from "../utils/wireframe";
-import { createArrayFromInt } from "../utils/helpers";
+import { ALIGNMENT_TYPES, createArrayFromInt } from "../utils/helpers";
 
 function Main() {
   const [radius, setRadius] = useState(2);
@@ -19,6 +19,8 @@ function Main() {
   const [spacing, setSpacing] = useState(4);
   const [colors, setColors] = useState([]);
   const [structure, setStructure] = useState([]);
+  const [alignment, setAlignment] = useState(ALIGNMENT_TYPES.LEFT);
+  const [maxWidth, setMaxWidth] = useState(100);
   const [svg, setSvg] = useState("");
 
   const refreshState = () =>
@@ -29,13 +31,19 @@ function Main() {
   }, [lines, words, colors]);
 
   useEffect(() => {
+    setMaxWidth(calculateMaxWidth(structure, words, spacing));
+  }, [structure, spacing]);
+
+  useEffect(() => {
     setSvg(
       createStringSVG({
         words,
         height,
         spacing,
         structure,
-        radius
+        radius,
+        alignment,
+        maxWidth
       })
     );
   });
@@ -44,10 +52,7 @@ function Main() {
 
   const createSvgElement = () => {
     return (
-      <svg
-        width={calculateMaxWidth(structure) + spacing * words}
-        height={height * lines + spacing * lines}
-      >
+      <svg width={maxWidth} height={height * lines + spacing * lines}>
         {createArrayFromInt(lines).map((row, index) => {
           return (
             <g key={index}>
@@ -57,7 +62,9 @@ function Main() {
                 spacing,
                 height,
                 radius,
-                structure[index]
+                structure[index],
+                alignment,
+                maxWidth
               ).map(rect => (
                 <>{rect}</>
               ))}
@@ -87,6 +94,8 @@ function Main() {
         setSvg={setSvg}
         refreshState={refreshState}
         updateColors={updateColors}
+        alignment={alignment}
+        setAlignment={setAlignment}
       />
 
       <Preview svgElement={createSvgElement()} svgString={svg} />

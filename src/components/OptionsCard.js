@@ -7,6 +7,10 @@ import { FiRefreshCw, FiDownload } from "react-icons/fi";
 import { rgba } from "polished";
 
 import ColorOptions from "../components/ColorOptions";
+import SelectInput from "../components/SelectInput";
+import RightAlignIcon from "./Icons/RightAlignIcon";
+import CenterAlignIcon from "./Icons/CenterAlignIcon";
+import LeftAlignIcon from "./Icons/LeftAlignIcon";
 
 const Card = styled.div`
   margin: 1rem;
@@ -32,6 +36,8 @@ function download(svg) {
 }
 
 const OptionsCard = ({
+  alignment,
+  setAlignment,
   radius,
   setRadius,
   lines,
@@ -49,6 +55,17 @@ const OptionsCard = ({
   return (
     <Card>
       <H2>Take more control...</H2>
+      <SelectInput
+        label="Align"
+        name="align"
+        options={[
+          { value: 0, name: "Left", icon: <LeftAlignIcon /> },
+          { value: 1, name: "Center", icon: <CenterAlignIcon /> },
+          { value: 2, name: "Right", icon: <RightAlignIcon /> }
+        ]}
+        onChange={setAlignment}
+        value={alignment}
+      />
       <RangeInput
         label="Radius"
         name="radius"
