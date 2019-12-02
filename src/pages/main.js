@@ -76,7 +76,7 @@ function Main() {
   };
 
   return (
-    <Flex alignItems={"flex-start"} justifyContent="space-between" p={4}>
+    <Flex alignItems={"flex-start"} justifyContent="space-between" p={4} pt={0}>
       <OptionsCard
         radius={radius}
         setRadius={setRadius}
