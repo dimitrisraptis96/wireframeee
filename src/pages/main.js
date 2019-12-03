@@ -10,6 +10,7 @@ import {
   createStringSVG
 } from "../utils/wireframe";
 import { ALIGNMENT_TYPES, createArrayFromInt } from "../utils/helpers";
+import useWindowSize from "../hooks/useWindowSize";
 
 function Main() {
   const [radius, setRadius] = useState(2);
@@ -22,6 +23,7 @@ function Main() {
   const [alignment, setAlignment] = useState(ALIGNMENT_TYPES.LEFT);
   const [maxWidth, setMaxWidth] = useState(100);
   const [svg, setSvg] = useState("");
+  const size = useWindowSize();
 
   const refreshState = () =>
     setStructure(getRandomWidthsArray(lines, words, height, colors));
@@ -75,8 +77,16 @@ function Main() {
     );
   };
 
+  const isDesktop = size.width > 900;
+
   return (
-    <Flex alignItems={"flex-start"} justifyContent="space-between" p={4} pt={0}>
+    <Flex
+      flexDirection={isDesktop ? "row" : "column-reverse"}
+      alignItems={isDesktop ? "flex-start" : "center"}
+      justifyContent="space-between"
+      p={4}
+      pt={0}
+    >
       <OptionsCard
         radius={radius}
         setRadius={setRadius}
