@@ -7,6 +7,7 @@ Playful text wireframe generation on the fly
 - [x] Footer
 - [x] Color supoort
 - [x] Add random color based on given array and save it to structure
-- [ ] Customize Footer and add CTA
-- [ ] Complete branding
-- [ ] Some beta testing before the launch
+- [x] Customize Footer and add CTA
+- [x] Complete branding
+- [x] Some beta testing before the launch
+- [ ] Export to React feature
