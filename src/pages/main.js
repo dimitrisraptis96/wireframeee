@@ -107,7 +107,6 @@ function Main() {
         alignment={alignment}
         setAlignment={setAlignment}
       />
-
       <Preview svgElement={createSvgElement()} svgString={svg} />
     </Flex>
   );

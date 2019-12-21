@@ -52,7 +52,7 @@ const SelectInput = ({ options, name, label, value, onChange }) => {
           {option.icon}
         </Circle>
       ))}
-      <NewTag />
+      {/* <NewTag /> */}
     </Flex>
   );
 };

@@ -9,6 +9,9 @@ import moon from "../assets/moon.png";
 import { FiGift } from "react-icons/fi";
 import styled from "styled-components";
 import { rgba } from "polished";
+import FigmaLogo from "./Icons/FigmaLogo";
+import NewTag from "./NewTag";
+import Announcement from "./Announcement";
 
 const Anchor = styled.a`
   display: flex;
@@ -57,6 +60,9 @@ function Nav({ themeMode, setThemeMode }) {
                   <b>About</b>
                 </Link>
               </li> */}
+              <li style={{ marginRight: "4rem" }}>
+                <Announcement />
+              </li>
               <li>
                 {/* <Link to="/support"> */}
                 <Anchor
