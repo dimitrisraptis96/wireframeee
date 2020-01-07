@@ -12,6 +12,7 @@ import { rgba } from "polished";
 import FigmaLogo from "./Icons/FigmaLogo";
 import NewTag from "./NewTag";
 import Announcement from "./Announcement";
+import PHBanner from "./PHBanner";
 
 const Anchor = styled.a`
   display: flex;
@@ -46,7 +47,7 @@ function Nav({ themeMode, setThemeMode }) {
       <Flex
         justifyContent="space-between"
         alignItems="center"
-        style={{ padding: "2rem 3rem" }}
+        style={{ padding: "1.5rem 3rem" }}
       >
         <Link to="/">
           <Logo />
@@ -64,16 +65,16 @@ function Nav({ themeMode, setThemeMode }) {
                 <Announcement />
               </li> */}
 
-              <li>
-                <Anchor
-                  href="https://www.buymeacoffee.com/dmraptis"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <b style={{ marginRight: "0.5rem" }}>Available Plugins:</b>
-                  <FigmaLogo size={24} />
-                </Anchor>
-              </li>
+              <Anchor
+                href="https://www.buymeacoffee.com/dmraptis"
+                rel="noreferrer"
+                target="_blank"
+                style={{ marginRight: "1rem" }}
+              >
+                <b style={{ marginRight: "0.5rem" }}>Available Plugins:</b>
+                <FigmaLogo size={24} />
+              </Anchor>
+              <PHBanner />
               {/* <li>
                 <Anchor
                   href="https://www.buymeacoffee.com/dmraptis"

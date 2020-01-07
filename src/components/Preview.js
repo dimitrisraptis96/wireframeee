@@ -6,28 +6,15 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 import { useToasts } from "react-toast-notifications";
 import { Box } from "rebass/styled-components";
 import { FiCopy } from "react-icons/fi";
-import PHBanner from "./PHBanner";
 
 const Container = styled(Box)`
+  margin: 1rem;
   padding: 8rem 4rem;
   background-color: #fff;
   border: 2px dashed ${props => props.theme.colors.primary};
   border-radius: 8px;
   position: relative;
   min-height: 100%;
-`;
-
-const Column = styled.div`
-  margin: 1rem;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-
-  & > *:first-child {
-    margin-bottom: 1rem;
-  }
 `;
 
 const CopyWrapper = styled.div`
@@ -58,25 +45,22 @@ function Preview({ svgString, svgElement }) {
   const { addToast } = useToasts();
 
   return (
-    <Column>
-      <Container width={1}>
-        <CopyToClipboard
-          text={svgString}
-          onCopy={() =>
-            addToast(`${getRandomInterjection()}! Copied! 👏`, {
-              appearance: "success",
-              autoDismiss: true
-            })
-          }
-        >
-          <CopyWrapper>
-            <FiCopy size={20} />
-          </CopyWrapper>
-        </CopyToClipboard>
-        {svgElement}
-      </Container>
-      <PHBanner />
-    </Column>
+    <Container width={1}>
+      <CopyToClipboard
+        text={svgString}
+        onCopy={() =>
+          addToast(`${getRandomInterjection()}! Copied! 👏`, {
+            appearance: "success",
+            autoDismiss: true
+          })
+        }
+      >
+        <CopyWrapper>
+          <FiCopy size={20} />
+        </CopyWrapper>
+      </CopyToClipboard>
+      {svgElement}
+    </Container>
   );
 }
 
