@@ -13,7 +13,6 @@ import Toast from "./components/Toast";
 import Footer from "./components/Footer";
 
 import theme from "./utils/theme";
-import PHBanner from "./components/PHBanner";
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -38,7 +37,6 @@ function App() {
         >
           <GlobalStyle />
           <AppLayout>
-            <PHBanner />
             <Nav themeMode={themeMode} setThemeMode={setThemeMode} />
 
             <Switch>

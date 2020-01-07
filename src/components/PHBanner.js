@@ -15,14 +15,14 @@ export const PHBanner = () => {
           IS_DARK ? "dark" : "light"
         }&period=daily`}
         alt="Wireframer | Flawless SVG text for your wireframes | Product Hunt Embed"
-        style={{
-          zIndex: "100000000",
-          margin: "0",
-          position: "fixed",
-          bottom: "0",
-          right: 0,
-          margin: "1rem"
-        }}
+        // style={{
+        //   zIndex: "100000000",
+        //   margin: "0",
+        //   position: "fixed",
+        //   bottom: "0",
+        //   right: 0,
+        //   margin: "1rem"
+        // }}
       />
     </a>
   );

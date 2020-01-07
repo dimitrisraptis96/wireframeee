@@ -81,7 +81,7 @@ function Main() {
 
   return (
     <Flex
-      flexDirection={isDesktop ? "row" : "column-reverse"}
+      flexDirection={isDesktop ? "row" : "column"}
       alignItems={isDesktop ? "flex-start" : "center"}
       justifyContent="space-between"
       p={4}

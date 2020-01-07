@@ -60,11 +60,21 @@ function Nav({ themeMode, setThemeMode }) {
                   <b>About</b>
                 </Link>
               </li> */}
-              <li style={{ marginRight: "4rem" }}>
+              {/* <li style={{ marginRight: "4rem" }}>
                 <Announcement />
-              </li>
+              </li> */}
+
               <li>
-                {/* <Link to="/support"> */}
+                <Anchor
+                  href="https://www.buymeacoffee.com/dmraptis"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <b style={{ marginRight: "0.5rem" }}>Available Plugins:</b>
+                  <FigmaLogo size={24} />
+                </Anchor>
+              </li>
+              {/* <li>
                 <Anchor
                   href="https://www.buymeacoffee.com/dmraptis"
                   rel="noreferrer"
@@ -73,8 +83,7 @@ function Nav({ themeMode, setThemeMode }) {
                   <FiGift />
                   <b>Support</b>
                 </Anchor>
-                {/* </Link> */}
-              </li>
+              </li> */}
             </Flex>
           </ul>
 
