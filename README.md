@@ -10,4 +10,4 @@ Playful text wireframe generation on the fly
 - [x] Customize Footer and add CTA
 - [x] Complete branding
 - [x] Some beta testing before the launch
-- [ ] Export to React feature
+~~- [ ] Export to React feature~~
