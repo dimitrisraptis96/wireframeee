@@ -66,7 +66,7 @@ function Nav({ themeMode, setThemeMode }) {
               </li> */}
 
               <Anchor
-                href="https://www.buymeacoffee.com/dmraptis"
+                href="https://www.figma.com/c/plugin/787660853629435276/Wireframer"
                 rel="noreferrer"
                 target="_blank"
                 style={{ marginRight: "1rem" }}
