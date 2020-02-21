@@ -11,6 +11,7 @@ import AppLayout from "./components/Layout/AppLayout";
 import Nav from "./components/Nav";
 import Toast from "./components/Toast";
 import Footer from "./components/Footer";
+import NotificationBar from "./components/NotificationBar";
 
 import theme from "./utils/theme";
 
@@ -37,6 +38,7 @@ function App() {
         >
           <GlobalStyle />
           <AppLayout>
+            <NotificationBar />
             <Nav themeMode={themeMode} setThemeMode={setThemeMode} />
 
             <Switch>
