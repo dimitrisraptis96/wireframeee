@@ -1,13 +1,10 @@
 # Wireframer
 
-Playful text wireframe generation on the fly
+Playful text wireframe generation on the fly 
 
-## TODO:
+## 📜License
 
-- [x] Footer
-- [x] Color supoort
-- [x] Add random color based on given array and save it to structure
-- [x] Customize Footer and add CTA
-- [x] Complete branding
-- [x] Some beta testing before the launch
-~~- [ ] Export to React feature~~
+Copyright (c) 2019-present Jim Raptis. All rights reserved.
+
+**The code, design and idea in this repository are intellectual property of the individual mentioned above (unless otherwise stated) and as such CANNOT be copied, modified, sublicensed or redistributed without permission from the author.**
+
