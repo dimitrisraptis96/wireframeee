@@ -28,6 +28,14 @@ const Footer = ({}) => {
         >
           @dmraptis
         </Underline>
+        {" "}and{" "}
+        <Underline
+          href="https://designstripe.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          designstripe
+        </Underline>
       </p>
     </Container>
   );
