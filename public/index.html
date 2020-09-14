@@ -54,33 +54,8 @@
     </noscript>
     <div id="root"></div>
 
-    <!-- BEGIN COPY CODEFUND EMBED -->
-    <div id="codefund"></div>
-    <script
-      src="https://app.codefund.io/properties/697/funder.js"
-      async
-    ></script>
-    <!-- END COPY CODEFUND EMBED -->
-
-    <!-- Hotjar Tracking Code for https://wireframer.netlify.com -->
-    <script>
-      (function(h, o, t, j, a, r) {
-        h.hj =
-          h.hj ||
-          function() {
-            (h.hj.q = h.hj.q || []).push(arguments);
-          };
-        h._hjSettings = { hjid: 1544910, hjsv: 6 };
-        a = o.getElementsByTagName("head")[0];
-        r = o.createElement("script");
-        r.async = 1;
-        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window, document, "https://static.hotjar.com/c/hotjar-", ".js?sv=");
-    </script>
-
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
+    <!-- <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-115819910-6"
     ></script>
@@ -92,16 +67,18 @@
       gtag("js", new Date());
 
       gtag("config", "UA-115819910-6");
+    </script> -->
+    <script>
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)){ return; }
+          js = d.createElement(s); js.id = id;
+          js.onload = function(){
+            dsads.la();
+          };
+          js.src = "https://campaigns.designstripe.com/analytics.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'ds-jssdk'));
     </script>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>
