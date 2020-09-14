@@ -57,11 +57,6 @@ function Nav({ themeMode, setThemeMode }) {
           <ul style={{ listStyleType: "none" /*marginRight: "4rem"*/ }}>
             <Flex>
               {/* <li style={{ marginRight: "4rem" }}>
-                <Link to="/about">
-                  <b>About</b>
-                </Link>
-              </li> */}
-              {/* <li style={{ marginRight: "4rem" }}>
                 <Announcement />
               </li> */}
 
