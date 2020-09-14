@@ -46,31 +46,33 @@ const NotificationBar = ({}) => {
     setIsSeen(true);
   }
 
-  return (
-    <>
-      {!isSeen && (
-        <Container
-          color={"#DA5631"}
-          href="https://www.producthunt.com/posts/designvalley"
-          target="_blank"
-        >
-          <PHLogo />
-          DesignValley is on Product Hunt today! Grab a coffee and have a look
-          now.{" "}
-          <FiX
-            onClick={initCookie}
-            style={{
-              position: "absolute",
-              right: 0,
-              marginRight: "1rem",
-              padding: "0.5rem",
-              zIndex: 1000
-            }}
-          />
-        </Container>
-      )}
-    </>
-  );
+  return null;
+
+  // return (
+  //   <>
+  //     {!isSeen && (
+  //       <Container
+  //         color={"#DA5631"}
+  //         href="https://www.producthunt.com/posts/designvalley"
+  //         target="_blank"
+  //       >
+  //         <PHLogo />
+  //         DesignValley is on Product Hunt today! Grab a coffee and have a look
+  //         now.{" "}
+  //         <FiX
+  //           onClick={initCookie}
+  //           style={{
+  //             position: "absolute",
+  //             right: 0,
+  //             marginRight: "1rem",
+  //             padding: "0.5rem",
+  //             zIndex: 1000
+  //           }}
+  //         />
+  //       </Container>
+  //     )}
+  //   </>
+  // );
 };
 
 const PHLogo = () => {
